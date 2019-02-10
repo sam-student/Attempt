@@ -1,0 +1,121 @@
+{% load static %}
+<head>
+
+<style>
+
+
+ .nav-item:hover{
+    background-color: gold ;
+     {#height: 50px;#}
+
+}
+
+    .nav-item{
+        height: 70px;
+        padding-top: 15px;
+        text-align: center;
+
+    }
+    .nav-link:active{
+
+        color: red;
+    }
+    .navbar-brand{
+        color: white;
+    }
+
+</style>
+</head>
+<body>
+{#<h1>{{ brand_name }}</h1>#}
+{% url "home" as home_url %}
+{% url "contact" as contact_url %}
+{% url "products:list" as product_list_url %}
+{% url "pproducts:list" as pproduct_list_url %}
+{% url "login" as login_url %}
+{% url "logout" as logout_url %}
+{% url "register" as register_url %}
+{% url "cart:home" as cart_url %}
+
+<nav class="navbar navbar-expand-lg navbar-light " style="height: 50px;background-color: rgb(35, 47, 62)">
+  <a class="navbar-brand" style="color: white ; font-weight: bold; font-size: 30px" href="{% url "home" %}">{% if brand_name %} {{brand_name }}{% else %}CFE ecommerce{% endif %}</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <a class = "navbar-brand" href="#">
+{#                <img src="{% static "img/amazon.jpg" %}" width="110px" height=" 50px"  alt="logo" style="background: transparent">#}
+{#                 {% include "search/snippets/logo.html" %}#}
+
+        </a>
+             {% include "search/snippets/search_form.html" %}
+{#  </div>
+    <p style="font-size: 18px; color: white;margin-top: 20px;padding-right: 50px"><a class="nav-link" style="color: white ; font-weight: bold" href="{{ register_url }}">New to our site? Click here to learn more</a></p>
+</nav>
+{#<nav class="navbar navbar-expand-lg navbar-light " style="height: 50px;background-color: rgb(35, 47, 62)">#}
+{#  <a class="navbar-brand" style="color: white ; font-weight: bold; font-size: 30px" href="{% url "home" %}">{% if brand_name %} {{brand_name }}{% else %}CFE eCommerce{% endif %}</a>#}
+{#      <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#         <a class = "navbar-brand" href="#">#}
+{#                <img src="{% static "img/amazon.jpg" %}" width="110px" height=" 50px"  alt="logo" style="background: transparent">#}
+{#                 {% include "search/snippets/logo.html" %}#}
+{##}
+{#        </a>#}
+{#             {% include "searchprice/snippets/search_form.html" %}#}
+{#  </div>#}
+{#    <p style="font-size: 18px; color: white; margin-left: 30px;margin-top: 20px">New to Amazon? Click here to learn more</p>#}
+{#</nav>#}
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="height: 65px;background-color: rgb(35, 47, 62)">
+{#  <a class="navbar-brand" href="{% url "home" %}">{% if brand_name %} {{brand_name }}{% else %}CFE eCommerce{% endif %}</a>#}
+    <img src="{% static "img/location.PNG" %}">
+    <p style="color: white; font-size: 13px; margin-left: 5px;margin-top: 10px">Deliver to<br> <b>Pakistan</b></p>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 160px">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" style="color: white ; font-weight: bold " href="{{ home_url }}">Home <span class="sr-only">(current)</span></a>
+      </li>
+     <li class="nav-item {% if request.path == pproduct_list_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ pproduct_list_url }}">Top Products</a>
+      </li>
+      <li class="nav-item {% if request.path == product_list_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ product_list_url }}">Products</a>
+      </li>
+    <li class="nav-item {% if request.path == product_list_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ product_list_url }}">Sell</a>
+      </li>
+     <li class="nav-item {% if request.path == contact_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ contact_url }}">Contact</a>
+      </li>
+    <li class="nav-item {% if request.path == contact_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ contact_url }}">Help</a>
+      </li>
+{#    <li class="nav-item {% if request.path == cart_url %}active{% endif %}" style="margin-left: 500px">#}
+{#        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}">#}
+{#                <img src="{% static "img/cart.png" %}" style="width: 20%"  class="img-fluid"/>#}
+{#        </a>#}
+      </li>
+    <li class="nav-item {% if request.path == cart_url %}{% endif %}" style="margin-left: 450px" >
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}">Orders</a>
+      </li>
+     <li class="nav-item {% if request.path == cart_url %}{% endif %}" >
+
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}"><img src="{% static "img/cart.PNG" %}">Cart {{ request.session.cart_total }}</a>
+      </li>
+
+      {% if request.user.is_authenticated %}
+      <li class="nav-item {% if request.path == logout_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ logout_url }}">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item {% if request.path == login_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ register_url }}">Register</a>
+      </li>
+      <li class="nav-item {% if request.path == login_url %}{% endif %}">
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ login_url }}">Login</a>
+      </li>
+
+      {% endif %}
+    </ul>
+{#      {% include "search/snippets/search_form.html" %}#}
+  </div>
+</nav>
+
+</body>

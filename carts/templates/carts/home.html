@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Cart</h1>
+
+    {% if cart.products.exists %}
+        <table style="width:100%">
+      <tr>
+                  <th>#</th>
+        <th>Product name</th>
+        <th>Product Price</th>
+      </tr>
+
+            {% for product in cart.products.all %}
+      <tr>
+        <th>{{ forloop.counter }}</th>
+          <td><a href="{{ product.get_absolute_url }}" >{{ product.title }}</a>
+
+            <form method="POST"  action="{% url "cart:update" %}" class="form" > {% csrf_token %}
+                 <input type="hidden" name="product_id" value="{{ product.id }}" />
+                {% if object in cart.products.all %}
+                <button type="submit" style="color: white ; background-color: limegreen">Add to cart</button>
+
+                {% else %}
+        In cart<button type="submit" style="color: white ; background-color: limegreen">Remove</button>
+
+                {% endif %}
+          </form>
+
+{#              {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}#}
+
+
+          </td>
+        <td>{{ product.price }}</td>
+      </tr>
+            {% endfor %}
+      <tr>
+          <td colspan="2"></td>
+        <td><b>SubTotal  </b>{{ cart.subtotal }}</td>
+      </tr>
+        <tr>
+        <td colspan="2"></td>
+        <td><b>Total </b>{{ cart.total }}</td>
+      </tr>
+         <tr>
+        <td colspan="2"></td>
+             <td><b><a class='btn btn-lg btn-success' href='{% url "cart:checkout" %}'>CheckOut</a></b></td>
+      </tr>
+
+
+    </table>
+
+    {% else %}
+        <p >Cart is empty</p>
+    {% endif %}
+
+{% endblock %}
