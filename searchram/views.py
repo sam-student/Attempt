@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from products.models import Product
 
 class SearchProductView(ListView):
-    #queryset = Product.objects.all()
+    #queryset = product.objects.all()
     template_name = "searchram/view.html"
 
     def get_context_data(self, *args, **kwargs):
@@ -22,9 +22,9 @@ class SearchProductView(ListView):
         query = method_dict.get("q", None)
         #print(query)
         if query is not None:
-            # return Product.objects.filter(title__icontains=query)
+            # return product.objects.filter(title__icontains=query)
             return Product.objects.filter(memory__icontains = query )
-            # return Product.objects.filter(memory__icontains=query)
+            # return product.objects.filter(memory__icontains=query)
 
         return Product.objects.featured()
-        #return Product.objects.filter(title__icontains="samsung")
+        #return product.objects.filter(title__icontains="samsung")

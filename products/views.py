@@ -21,10 +21,10 @@ class ProductFeaturedDetailView(DetailView):
 
     # def get_queryset(self, *args, **kwargs):
     #     request = self.request
-    #     return Product.objects.featured()
+    #     return product.objects.featured()
 
 class ProductListView(ListView):
-    #queryset = Product.objects.all()
+    #queryset = product.objects.all()
     template_name = "products/list.html"
 
     # def get_context_data(self, *args, **kwargs):
@@ -58,7 +58,7 @@ class ProductDetailSlugView(DetailView):
     def get_object(self, *args, **kwargs):
         request = self.request
         slug = self.kwargs.get("slug")
-        #instance = get_object_or_404(Product , slugs=slug, active=True)
+        #instance = get_object_or_404(product , slugs=slug, active=True)
 
         try:
             instance = Product.objects.get(slug=slug,active=True)
@@ -73,7 +73,7 @@ class ProductDetailSlugView(DetailView):
         return instance
 
 class ProductDetailView(DetailView):
-    #queryset = Product.objects.all()
+    #queryset = product.objects.all()
     template_name = "products/detail.html"
 
     def get_context_data(self, *args, **kwargs):
@@ -87,36 +87,36 @@ class ProductDetailView(DetailView):
         pk = self.kwargs.get("pk")
         instance = Product.objects.get_by_id(pk)
         if instance is None:
-            raise Http404("Product doesn't exist")
+            raise Http404("product doesn't exist")
         return instance
 
     # def get_queryset(self, *args, **kwargs ):
     #     request = self.request
     #     pk = self.kwargs.get("pk")
-    #     return Product.objects.filter(pk=pk)
+    #     return product.objects.filter(pk=pk)
 
 
 def product_detail_view(request, pk=None, *args, **kwargs):
-        #instance = Product.objects.get(pk=pk, featured=True)
-        #instance = get_object_or_404(Product, pk=pk , featured=True)
+        #instance = product.objects.get(pk=pk, featured=True)
+        #instance = get_object_or_404(Prdoduct, pk=pk , featured=True)
     # try:
-    #     instance =Product.objects.get(id=pk)
-    # except Product.DoesNotExist:
+    #     instance =product.objects.get(id=pk)
+    # except product.DoesNotExist:
     #     print('no product here')
-    #     raise Http404("Product does,not exist")
+    #     raise Http404("product does,not exist")
     # except:
     #     print("huh?")
 
     instance = Product.objects.get_by_id(pk)
     if instance is None:
-        raise Http404("Product doesn't exist")
+        raise Http404("product doesn't exist")
     # print(instance)
     #
-    # qs = Product.objects.filter(id=pk)
+    # qs = product.objects.filter(id=pk)
     # if qs.exists() and qs.count() ==1:
     #     instance = qs.first()
     # else:
-    #     raise Http404("Product does,not exist")
+    #     raise Http404("product does,not exist")
 
     context = {
         "object": instance

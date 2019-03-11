@@ -35,6 +35,15 @@ from products.views import \
     ProductFeaturedListView,\
     ProductDetailSlugView)
 
+from product.views import \
+    (ProductListView,\
+    product_list_view,\
+    ProductDetailView,\
+    product_detail_view,\
+    ProductFeaturedDetailView,\
+    ProductFeaturedListView,\
+    ProductDetailSlugView)
+
 from pproducts.views import product_upload,product_list_view,product_detail_view
 
 from aproducts.views import aproduct_upload,product_list_view,product_detail_view
@@ -66,6 +75,8 @@ urlpatterns = [
     url(r'^register/$',register_page, name="register"),
     url(r'^bootstrap/$',TemplateView.as_view(template_name="bootstrap/example.html")),
     url(r'^products/',include(("products.urls","products"), namespace = "products")),
+    url(r'^product/', include(("product.urls", "product"), namespace="product")),
+    url(r'^accessories/', include(("accessories.urls", "accessories"), namespace="accessories")),
     url(r'^pproducts/', include(("pproducts.urls", "pproducts"), namespace="pproducts")),
     url(r'^aproducts/', include(("aproducts.urls", "aproducts"), namespace="aproducts")),
     url(r'^samsungproducts/', include(("samsungproducts.urls", "samsungproducts"), namespace="samsungproducts")),
@@ -73,6 +84,8 @@ urlpatterns = [
     url(r'^1_GB_Mobiles/', include(("One_GB_Mobiles.urls", "One_GB_Mobiles"), namespace="One_GB_Mobiles")),
     url(r'^Two_GB_Mobiles/', include(("Two_GB_Mobiles.urls", "Two_GB_Mobiles"), namespace="Two_GB_Mobiles")),
     url(r'^Three_GB_Mobiles/', include(("Three_GB_Mobiles.urls", "Three_GB_Mobiles"), namespace="Three_GB_Mobiles")),
+
+    url(r'^ratings/', include(('star_ratings.urls', "star_ratings"), namespace='ratings' )),
 
     url(r'^FivektoTenk/', include(("FivektoTenk.urls", "FivektoTenk"), namespace="FivektoTenk")),
     url(r'^TenktoTwentyk/', include(("TenktoTwentyk.urls", "TenktoTwentyk"), namespace="TenktoTwentyk")),

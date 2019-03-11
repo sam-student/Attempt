@@ -25,6 +25,7 @@ class OrderManager(models.Manager):
             active=True,
             status = 'created'
         )
+
         if qs.count() == 1:
             obj = qs.first()
         else:

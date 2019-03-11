@@ -7,8 +7,8 @@ from accounts.models import GuestEmail
 from addresses.models import Address
 from accounts.forms import LoginForm, GuestForm
 from billing.models import BillingProfile
-from products.models import Product
-from pproducts.models import P_Product
+from product.models import Product
+# from pproducts.models import P_Product
 
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.models import User
@@ -25,9 +25,9 @@ from addresses.forms import AddressForm
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-    # products = cart_obj.products.all()
+    # product = cart_obj.product.all()
     # total = 0
-    # for x in products:
+    # for x in product:
     #     total += x.price
     # print(total)
     # cart_obj.total =total
@@ -76,12 +76,12 @@ def cart_update(request):
             print("Show message to user, product is gone?")
             return redirect("cart:home")
         cart_obj, new_obj = Cart.objects.new_or_get(request)
-        # cart_obj.products.add(product_obj)
-        if product_obj in cart_obj.products.all():
-            cart_obj.products.remove(product_obj)
+        # cart_obj.product.add(product_obj)
+        if product_obj in cart_obj.product.all():
+            cart_obj.product.remove(product_obj)
         else:
-            cart_obj.products.add(product_obj)
-        request.session['cart_items'] = cart_obj.products.count()
+            cart_obj.product.add(product_obj)
+        request.session['cart_items'] = cart_obj.product.count()
 
         # return redirect(product_obj.get_absolute_url())
     return redirect("cart:home")
@@ -90,7 +90,7 @@ def cart_update(request):
 def checkout_home(request):
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     order_obj = None
-    if cart_created or cart_obj.products.count() == 0:
+    if cart_created or cart_obj.product.count() == 0:
         return redirect("cart:home")
     # else:
     #     order_obj, new_order_obj = Order.objects.get_or_create(cart = cart_obj)

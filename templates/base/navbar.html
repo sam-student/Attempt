@@ -30,7 +30,9 @@
 {#<h1>{{ brand_name }}</h1>#}
 {% url "home" as home_url %}
 {% url "contact" as contact_url %}
-{% url "products:list" as product_list_url %}
+{% url "product:list" as product_list_url %}
+{% url "accessories:list" as accessories_list_url %}
+
 {% url "pproducts:list" as pproduct_list_url %}
 {% url "login" as login_url %}
 {% url "logout" as logout_url %}
@@ -39,19 +41,19 @@
 
 <nav class="navbar navbar-expand-lg navbar-light " style="height: 50px;background-color: rgb(35, 47, 62)">
   <a class="navbar-brand" style="color: white ; font-weight: bold; font-size: 30px" href="{% url "home" %}">{% if brand_name %} {{brand_name }}{% else %}CFE ecommerce{% endif %}</a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse">
          <a class = "navbar-brand" href="#">
 {#                <img src="{% static "img/amazon.jpg" %}" width="110px" height=" 50px"  alt="logo" style="background: transparent">#}
 {#                 {% include "search/snippets/logo.html" %}#}
 
         </a>
              {% include "search/snippets/search_form.html" %}
-{#  </div>
+  </div>
     <p style="font-size: 18px; color: white;margin-top: 20px;padding-right: 50px"><a class="nav-link" style="color: white ; font-weight: bold" href="{{ register_url }}">New to our site? Click here to learn more</a></p>
 </nav>
 {#<nav class="navbar navbar-expand-lg navbar-light " style="height: 50px;background-color: rgb(35, 47, 62)">#}
 {#  <a class="navbar-brand" style="color: white ; font-weight: bold; font-size: 30px" href="{% url "home" %}">{% if brand_name %} {{brand_name }}{% else %}CFE eCommerce{% endif %}</a>#}
-{#      <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#      <div class="collapse navbar-collapse" >#}
 {#         <a class = "navbar-brand" href="#">#}
 {#                <img src="{% static "img/amazon.jpg" %}" width="110px" height=" 50px"  alt="logo" style="background: transparent">#}
 {#                 {% include "search/snippets/logo.html" %}#}
@@ -70,46 +72,49 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 160px">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" style="color: white ; font-weight: bold " href="{{ home_url }}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="color: white ; font-weight: bold " href="{{ home_url }}"><h5><strong>Home</strong></h5> <span class="sr-only">(current)</span></a>
       </li>
      <li class="nav-item {% if request.path == pproduct_list_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ pproduct_list_url }}">Top Products</a>
+        <a class="nav-link" style="color: white ; font-weight: bold;margin-left: 10px" href="{{ pproduct_list_url }}"><h5><strong>Top Products</strong></h5></a>
       </li>
       <li class="nav-item {% if request.path == product_list_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ product_list_url }}">Products</a>
+        <a class="nav-link" style="color: white ;margin-left: 10px; font-weight: bold" href="{{ product_list_url }}"><h5><strong>Cell Phones</strong></h5></a>
       </li>
-    <li class="nav-item {% if request.path == product_list_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ product_list_url }}">Sell</a>
+        <li class="nav-item {% if request.path == product_list_url %}{% endif %}">
+        <a class="nav-link" style="color: white ;margin-left: 10px; font-weight: bold" href="{{ accessories_list_url }}"><h5><strong>Accessories</strong></h5></a>
       </li>
+    <!--<li class="nav-item {% if request.path == product_list_url %}{% endif %}">-->
+        <!--<a class="nav-link" style="color: white ; font-weight: bold" href="{{ product_list_url }}">Sell</a>-->
+      <!--</li>-->
      <li class="nav-item {% if request.path == contact_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ contact_url }}">Contact</a>
+        <a class="nav-link" style="color: white ; font-weight: bold;margin-left: 10px" href="{{ contact_url }}"><h5><strong>Contact</strong></h5></a>
       </li>
-    <li class="nav-item {% if request.path == contact_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ contact_url }}">Help</a>
+         <li class="nav-item {% if request.path == login_url %}{% endif %}">
+        <a class="nav-link" style="color: white; font-weight: bold;margin-left: 10px" href="{{ register_url }}"><h5><strong>Register</strong></h5></a>
       </li>
+    <!--<li class="nav-item {% if request.path == contact_url %}{% endif %}">-->
+        <!--<a class="nav-link" style="color: white ; font-weight: bold" href="{{ contact_url }}">Help</a>-->
+      <!--</li>-->
 {#    <li class="nav-item {% if request.path == cart_url %}active{% endif %}" style="margin-left: 500px">#}
 {#        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}">#}
 {#                <img src="{% static "img/cart.png" %}" style="width: 20%"  class="img-fluid"/>#}
 {#        </a>#}
       </li>
-    <li class="nav-item {% if request.path == cart_url %}{% endif %}" style="margin-left: 450px" >
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}">Orders</a>
+    <li class="nav-item {% if request.path == cart_url %}{% endif %}" style="margin-left: 250px" >
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}"><h5><strong>Orders</strong></h5></a>
       </li>
      <li class="nav-item {% if request.path == cart_url %}{% endif %}" >
 
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ cart_url }}"><img src="{% static "img/cart.PNG" %}">Cart {{ request.session.cart_total }}</a>
+         <a class="nav-link" style="color: white ;margin-left: 10px;margin-right: 20px; font-weight: bold" href="{{ cart_url }}"><img src="{% static "img/cart.PNG" %}"><h7><strong>Cart</strong></h7> {{ request.session.cart_total }}</a>
       </li>
 
       {% if request.user.is_authenticated %}
       <li class="nav-item {% if request.path == logout_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ logout_url }}">Logout</a>
+        <a class="nav-link" style="color: white; font-weight: bold" href="{{ logout_url }}"><h5><strong>Logout</strong></h5></a>
       </li>
       {% else %}
       <li class="nav-item {% if request.path == login_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ register_url }}">Register</a>
-      </li>
-      <li class="nav-item {% if request.path == login_url %}{% endif %}">
-        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ login_url }}">Login</a>
+        <a class="nav-link" style="color: white ; font-weight: bold" href="{{ login_url }}"><h5><strong>Login</strong></h5></a>
       </li>
 
       {% endif %}

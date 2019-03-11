@@ -21,44 +21,41 @@
 {#    <h1>hello i am home page</h1>#}
 {#    </div>#}
 {% url "pproducts:list" as pproduct_list_url %}
-    {% url "products:list" as product_list_url %}
+    <!--{% url "products:list" as product_list_url %}-->
+    {% url "product:list" as product_list_url %}
+    {% url "accessories:list" as accessories_list_url %}
+
+
 
     <div class='container-fluid'>
         <div class='row'>
             <div class='col-lg-12 col-md-12 col-sm-12'>
                 <a  style="color: blue ; font-weight: bold" href="{{ product_list_url }}">
-                    <img src="{% static "img/sliderupdated.png" %}" style="width: 100%"  class="img-fluid"/></a>
+                    <img src="{% static "img/slid.JPG" %}" style="width: 100%"  class="img-fluid"/></a>
 {#                <p>{{ content }}</p>#}
         </div>
         </div>
     </div>
-{#      <div class='container-fluid'>#}
-{#        <div class='row'>#}
-{#            <div class='col-lg-12 col-md-12 col-sm-12'>#}
-{#                <a  style="color: blue ; font-weight: bold" href="{{ pproduct_list_url }}">#}
-{#                    <img src="{% static "img/sliderrc1.PNG" %}" style="width: 100%;margin-left: 52px"  class="img-fluid"/></a>#}
-{#                <p>{{ content }}</p>#}
-{#        </div>#}
-{#        </div>#}
-{#    </div>#}
+      <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-lg-12 col-md-12 col-sm-12'>
+                <a  style="color: blue ; font-weight: bold" href="{{ accessories_list_url }}">
+                   <img src="{% static "img/sliderrc1.PNG" %}" style="width: 100%"  class="img-fluid"/></a>
+                <!--<p>{{ content }}</p>-->
+        </div>
+        </div>
+    </div>
     <div class='container-fluid'>
         <div class='row'>
             <div class='col-lg-12 col-md-12 col-sm-12'>
-                <a  style="color: blue ; font-weight: bold" href="{{ pproduct_list_url }}">
+                <a  style="color: blue ; font-weight: bold" href="{{ accessories_list_url }}">
                     <img src="{% static "img/sliderrc.PNG" %}" style="width: 100%"  class="img-fluid"/></a>
 {#                <p>{{ content }}</p>#}
         </div>
         </div>
     </div>
 
-{#     <div class='container-fluid'>#}
-{#        <div class='row'>#}
-{#            <div class='column'>#}
-{#                <img src="{% static "img/slider4.PNG" %}" style="width: 100%"  class="img-fluid"/>#}
-{#                <p>{{ content }}</p>#}
-{#        </div>#}
-{#        </div>#}
-{#     </div>#}
+
 {# <div class="container-fluid">#}
 {#        <h2>Carousel Example</h2>#}
 {#        <div id="myCarousel" class="carousel slide" data-ride="carousel">#}
@@ -120,7 +117,7 @@
     text-align: center;background-color: white;padding-left: 27px">
         <div class='row'>
             <div class='column'>
-                <a  style="color: blue ; font-weight: bold" href="{{ product_list_url }}">
+                <a  style="color: blue ; font-weight: bold" href="{{ pproduct_list_url }}">
                 <img src="{% static "img/newtopsmp.PNG" %}" style="width: 100%;border: 1px solid black"  class="img-fluid"/></a>
 {#                <p>{{ content }}</p>#}
         </div>
@@ -149,12 +146,15 @@
 <div class='container' style="margin-top: 10px;width: 100%">
     <div class='row'>
             <div class='column'>
-                <img src="{% static "img/slider3.PNG" %}" style="width: 100%"  class="img-fluid"/>
+                <a  style="color: blue ; font-weight: bold" href="{{ accessories_list_url }}">
+                    <img src="{% static "img/slider3.PNG" %}" style="width: 100%"  class="img-fluid"/></a>
 {#                <p>{{ content }}</p>#}
         </div>
         </div>
     </div>
     </div>
+
+
 
 {#        {% if request.user.is_authenticated %}#}
 {#        <div class='row'>#}

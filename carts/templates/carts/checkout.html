@@ -24,7 +24,7 @@
             <div style="text-align: center">
             <div class='row'>
             <div class="col-12">
-                <p class="lead">Shipping Address</p>
+                <h1><STRONG>Shipping Address</STRONG></h1>
             </div>
             <div class='col-6'>
                         {% url "checkout_address_create" as checkout_address_create %}
@@ -44,7 +44,7 @@
             <div style="text-align: center">
               <div class='row'>
               <div class="col-12">
-                  <p class="lead">Billing Address</p>
+                  <h1>Billing Address</h1>
                   <hr/>
 
               </div>
@@ -63,7 +63,7 @@
         {% else %}
         <div style="text-align: center">
             <h1>Fianlize Checkout</h1>
-            <p><strong>Cart Items:</Strong> {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %} {% endfor %}</p>
+            <p><strong>Cart Items:</Strong> {% for product in object.cart.product.all %}{{ product }}{% if not forloop.last %}, {% endif %} {% endfor %}</p>
             <p><strong>Shipping Address:</Strong> {{ object.shipping_address.get_address }}</p>
             <p><strong>Billing Address:</Strong> {{ object.billing_address.get_address }}
             <p><strong>Cart Total:</Strong> {{ object.cart.total}}</p>

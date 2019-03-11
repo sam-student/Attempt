@@ -3,7 +3,7 @@
 {% block content %}
 <h1> Cart</h1>
 
-    {% if cart.products.exists %}
+    {% if cart.product.exists %}
         <table style="width:100%">
       <tr>
                   <th>#</th>
@@ -11,14 +11,14 @@
         <th>Product Price</th>
       </tr>
 
-            {% for product in cart.products.all %}
+            {% for product in cart.product.all %}
       <tr>
         <th>{{ forloop.counter }}</th>
           <td><a href="{{ product.get_absolute_url }}" >{{ product.title }}</a>
 
             <form method="POST"  action="{% url "cart:update" %}" class="form" > {% csrf_token %}
                  <input type="hidden" name="product_id" value="{{ product.id }}" />
-                {% if object in cart.products.all %}
+                {% if object in cart.product.all %}
                 <button type="submit" style="color: white ; background-color: limegreen">Add to cart</button>
 
                 {% else %}
@@ -27,7 +27,7 @@
                 {% endif %}
           </form>
 
-{#              {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}#}
+{#              {% include 'product/snippets/update-cart.html' with product=product cart=cart in_cart=True %}#}
 
 
           </td>

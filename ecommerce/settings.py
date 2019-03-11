@@ -41,11 +41,14 @@ INSTALLED_APPS = [
 
     #our_apps
     'accounts',
+    'star_ratings',
     'addresses',
+    'accessories',
     'billing',
     'carts',
     'orders',
     'products',
+    'product',
     'search',
     'searchknowledge',
     'searchprice',
